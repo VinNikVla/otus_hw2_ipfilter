@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.16)
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
 set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
-project(helloworld VERSION ${PROJECT_VERSION})
+project(ip_filter VERSION ${PROJECT_VERSION})
 
 option(WITH_GOOGLE_TEST "Whether to build Google test" ON)
 
@@ -44,9 +44,9 @@ GTest::gtest_main
 
 gtest_discover_tests(test_ipaddress)
 
-    # find_program(SH_PROG sh REQUIRED)
-    # find_program(MD5_PROG md5sum REQUIRED)
-    # add_test(testmd5 ${SH_PROG} -c "[ \"24e7a7b2270daee89c64d3ca5fb3da1a  -\" = \"$(./ip_filter < ${CMAKE_SOURCE_DIR}/ip_filter.tsv | ${MD5_PROG})\" ]")
+    find_program(SH_PROG sh REQUIRED)
+    find_program(MD5_PROG md5sum REQUIRED)
+    add_test(testmd5 ${SH_PROG} -c "[ \"24e7a7b2270daee89c64d3ca5fb3da1a  -\" = \"$(./ip_filter < ${CMAKE_SOURCE_DIR}/ip_filter.tsv | ${MD5_PROG})\" ]")
 endif()
 
 
